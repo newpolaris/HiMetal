@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  HiMetal
-//
-//  Created by peter.d.kim on 12/03/2019.
-//  Copyright © 2019 peter.d.kim. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain
