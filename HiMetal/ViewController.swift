@@ -8,6 +8,7 @@ class ViewController: UIViewController {
     var pipelineState: MTLRenderPipelineState!
     var commandQueue: MTLCommandQueue!
     var timer: CADisplayLink!
+    var metalView: MetalView!
 
     let vertexData: [Float] = [
         0.0,  1.0, 0.0,
@@ -20,12 +21,9 @@ class ViewController: UIViewController {
         
         device = MTLCreateSystemDefaultDevice()
         
-        metalLayer = CAMetalLayer()
-        metalLayer.device = device
-        metalLayer.pixelFormat = .bgra8Unorm
-        metalLayer.framebufferOnly = true
-        metalLayer.frame = view.layer.frame
-        view.layer.addSublayer(metalLayer)
+        metalView = self.view as? MetalView
+        metalView._device = device;
+        metalLayer = metalView._metalLayer;
         
         let dataSize = vertexData.count * MemoryLayout.size(ofValue: vertexData[0])
         vertexBuffer = device.makeBuffer(bytes: vertexData, length: dataSize, options: [])
