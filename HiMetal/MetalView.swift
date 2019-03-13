@@ -2,9 +2,11 @@ import Metal
 import UIKit
 import QuartzCore
 
+
 class MetalView : UIView {
     var _metalLayer: CAMetalLayer!
     var _device: MTLDevice!
+    var _layerSizeDidUpdate = false
     
     override class var layerClass: AnyClass {
         get {
@@ -22,5 +24,13 @@ class MetalView : UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        self._layerSizeDidUpdate = true
     }
+    
+    override var contentScaleFactor:CGFloat{
+        didSet{
+            self._layerSizeDidUpdate = true
+        }
+    }
+    
 }
